@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,4 +21,15 @@ public class Instructor extends GenericUser {
     @GeneratedValue
     @NotNull
     private Long id;
+
+    @OneToMany (
+       targetEntity = ScheduleEntry.class,
+       mappedBy = "instructor",
+       fetch = FetchType.LAZY
+    )
+    private List<ScheduleEntry> schedule;
+
+    @ManyToMany(mappedBy = "instructors")
+    private List<Course> courses;
+
 }

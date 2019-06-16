@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -46,4 +47,20 @@ public class Course extends GenericActivity {
     @NotNull
     @Column(name = "max_users")
     private int maxNrOfUsers;
+
+    @OneToMany (
+            targetEntity = Reservation.class,
+            mappedBy = "course",
+            fetch = FetchType.LAZY
+    )
+    private List<Reservation> reservations;
+
+    @ManyToMany()
+    @JoinTable (
+            name = "JOIN_COURSE_RESERVATION",
+            joinColumns = {@JoinColumn(name = "course_id",referencedColumnName = "course_id")},
+            inverseJoinColumns = {@JoinColumn(name = "instructor_id",referencedColumnName = "instructor_id")}
+    )
+    private List<Instructor> instructors;
+
 }

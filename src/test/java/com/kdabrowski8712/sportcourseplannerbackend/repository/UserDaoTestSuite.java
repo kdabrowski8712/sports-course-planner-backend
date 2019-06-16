@@ -1,6 +1,7 @@
 package com.kdabrowski8712.sportcourseplannerbackend.repository;
 
 import com.kdabrowski8712.sportcourseplannerbackend.domain.Address;
+import com.kdabrowski8712.sportcourseplannerbackend.domain.Reservation;
 import com.kdabrowski8712.sportcourseplannerbackend.domain.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,6 +19,9 @@ public class UserDaoTestSuite {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private ReservationDao reservationDao;
+
     @Test
     public void testUserDaoSave() {
 
@@ -25,14 +29,24 @@ public class UserDaoTestSuite {
         Address address = new Address("12","13","14",1,2,"15");
         User user = new User("jan","kowalski","test1",address);
 
-        userDao.save(user);
+        Reservation reservation = new Reservation();
+        reservation.setOwner(user);
 
-        Long id = user.getId();
-        Optional<User> readUser = userDao.findById(id);
+        reservationDao.save(reservation);
+        //userDao.save(user);
+
+        Long user_id = user.getId();
+        Long reservstion_id = reservation.getId();
+
+        Optional<User> readUser = userDao.findById(user_id);
+        Optional<Reservation> readReservation = reservationDao.findById(reservstion_id);
 
         Assert.assertTrue(readUser.isPresent());
+        Assert.assertTrue(readReservation.isPresent());
 
-        //userDao.deleteById(id);
+
+
+       // userDao.deleteById(id);
 
 
     }

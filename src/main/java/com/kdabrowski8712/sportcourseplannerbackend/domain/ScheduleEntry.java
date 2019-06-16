@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "SCHEDULE")
+@Table(name = "SCHEDULE_ENTRIES")
 public class ScheduleEntry {
     @Id
     @GeneratedValue
@@ -27,4 +27,17 @@ public class ScheduleEntry {
     private int duration;
     @Column(name="reserved")
     private boolean reserved;
+
+    @ManyToOne
+    @JoinColumn(name = "instructor_id")
+    private Instructor instructor;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Reservation reservation;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "individual_training_id")
+    private IndividualTrainingOffer individualTrainingOffer;
+
+
 }

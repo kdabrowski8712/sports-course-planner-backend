@@ -26,4 +26,17 @@ public class Reservation {
     @JoinColumn(name = "user_id")
     private User owner;
 
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
+
+    @ManyToOne
+    @JoinColumn(name="individual_offer_id")
+    private IndividualTrainingOffer individualTrainingOffer;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "schedule_entry_id")
+    private ScheduleEntry scheduleEntry;
+
+
 }
