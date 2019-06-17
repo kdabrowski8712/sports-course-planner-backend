@@ -43,7 +43,4 @@ public class IndividualTrainingOffer extends GenericActivity {
     )
     private List<Reservation> reservations;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private ScheduleEntry scheduleEntry;
-
 }

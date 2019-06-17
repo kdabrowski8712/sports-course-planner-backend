@@ -17,13 +17,15 @@ public abstract class GenericUser {
 
     @NotNull
     @Column(name = "name")
-    private String name;
+    protected String name;
     @NotNull
     @Column(name = "surname")
-    private String surname;
+    protected String surname;
     @Column(name = "description")
-    private String description;
+    protected String description;
 
     @Embedded
-    private Address address;
+    protected Address address;
+
+
 }

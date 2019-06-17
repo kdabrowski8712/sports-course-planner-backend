@@ -35,9 +35,4 @@ public class ScheduleEntry {
     @OneToOne(fetch = FetchType.LAZY)
     private Reservation reservation;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "individual_training_id")
-    private IndividualTrainingOffer individualTrainingOffer;
-
-
 }

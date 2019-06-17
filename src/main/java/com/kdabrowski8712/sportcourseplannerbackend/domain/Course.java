@@ -27,6 +27,10 @@ public class Course extends GenericActivity {
         this.maxNrOfUsers = maxNrOfUsers;
     }
 
+    public Course(Course second) {
+
+    }
+
     @Id
     @NotNull
     @GeneratedValue
@@ -62,5 +66,6 @@ public class Course extends GenericActivity {
             inverseJoinColumns = {@JoinColumn(name = "instructor_id",referencedColumnName = "instructor_id")}
     )
     private List<Instructor> instructors;
+
 
 }

@@ -17,17 +17,17 @@ public abstract class GenericActivity {
 
     @NotNull
     @Column(name = "name")
-    private String name;
+    protected String name;
 
     @Column(name = "description")
-    private String description;
+    protected String description;
     @NotNull
     @Column(name = "price")
-    private float price;
+    protected float price;
     @NotNull
     @Column(name = "category")
-    private String category;
+    protected String category;
     @Embedded
-    private Address address;
+    protected Address address;
 
 }
