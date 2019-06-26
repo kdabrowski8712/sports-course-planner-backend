@@ -17,5 +17,12 @@ public class ScheduleEntryDBService {
         return scheduleDao.findById(id);
     }
 
+    public ScheduleEntry saveEntry(ScheduleEntry scheduleEntry) {
+        return scheduleDao.save(scheduleEntry);
+    }
+
+    public void deleteEntry(Long id) {
+        scheduleDao.deleteById(id);
+    }
 
 }

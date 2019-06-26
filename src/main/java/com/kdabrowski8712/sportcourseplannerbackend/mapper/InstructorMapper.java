@@ -2,13 +2,16 @@ package com.kdabrowski8712.sportcourseplannerbackend.mapper;
 
 import com.kdabrowski8712.sportcourseplannerbackend.domain.*;
 import com.kdabrowski8712.sportcourseplannerbackend.service.CourseDBService;
+import com.kdabrowski8712.sportcourseplannerbackend.service.PrivateOfferDBService;
 import com.kdabrowski8712.sportcourseplannerbackend.service.ScheduleEntryDBService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class InstructorMapper {
 
     @Autowired
@@ -17,11 +20,16 @@ public class InstructorMapper {
     @Autowired
     private CourseDBService courseDBService;
 
+    @Autowired
+    private PrivateOfferDBService privateOfferDBService;
+
     public Instructor mapToInstructor(InstructorDto instructorDto) {
 
         Instructor mappedInstructor = new Instructor(instructorDto.getName(),
                 instructorDto.getSurname(),instructorDto.getDescription(),
                 new Address(instructorDto.getAddress()));
+
+        mappedInstructor.setId(instructorDto.getId());
 
         instructorDto.getScheduleIds().stream()
                 .forEach(scheduleId -> {
@@ -40,6 +48,15 @@ public class InstructorMapper {
                     }
                 });
 
+        instructorDto.getOfferIds().stream()
+                .forEach(offerId -> {
+                    Optional<PrivateOffer> offer = privateOfferDBService.getOffer(offerId);
+                    if(offer.isPresent()) {
+                        mappedInstructor.getTrainingoffers().add(offer.get());
+                    }
+                });
+
+
         return mappedInstructor;
     }
 
@@ -49,6 +66,8 @@ public class InstructorMapper {
                 instructor.getSurname(),instructor.getDescription(),
                 new Address(instructor.getAddress()));
 
+        mappedInstructorDto.setId(instructor.getId());
+
         instructor.getCourses().stream()
                 .forEach(course -> {
                     mappedInstructorDto.getCoursesIds().add(course.getId());
@@ -57,6 +76,11 @@ public class InstructorMapper {
         instructor.getSchedule().stream()
                 .forEach(scheduleEntry -> {
                     mappedInstructorDto.getScheduleIds().add(scheduleEntry.getId());
+                });
+
+        instructor.getTrainingoffers().stream()
+                .forEach(offer -> {
+                    mappedInstructorDto.getOfferIds().add(offer.getId());
                 });
 
         return mappedInstructorDto;

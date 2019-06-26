@@ -17,4 +17,12 @@ public class CourseDBService {
         return courseDao.findById(id);
     }
 
+    public Course saveCourse(Course course) {
+        return courseDao.save(course);
+    }
+
+    public void deleteCourse(Long id) {
+        courseDao.deleteById(id);
+    }
+
 }

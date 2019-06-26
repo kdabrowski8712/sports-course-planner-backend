@@ -1,6 +1,5 @@
 package com.kdabrowski8712.sportcourseplannerbackend.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "INSTRUCTORS")
 public class Instructor extends GenericUser {
     @Id
@@ -26,15 +26,25 @@ public class Instructor extends GenericUser {
             mappedBy = "instructor",
             fetch = FetchType.LAZY
     )
-    private List<ScheduleEntry> schedule;
+    private List<ScheduleEntry> schedule = new ArrayList<>();
 
     @ManyToMany(mappedBy = "instructors")
-    private List<Course> courses;
+    private List<Course> courses = new ArrayList<>();
+
+    @OneToMany (
+            targetEntity = PrivateOffer.class,
+            mappedBy = "instructor",
+            fetch = FetchType.LAZY
+    )
+    private List<PrivateOffer> trainingoffers = new ArrayList<>();
+
 
     public Instructor(@NotNull String name, @NotNull String surname, String description, Address address) {
         super(name, surname, description, address);
-        courses = new ArrayList<>();
-        schedule = new ArrayList<>();
+    }
+
+    public void addCourse(Course courseToAdd) {
+        courses.add(courseToAdd);
     }
 
 }

@@ -4,11 +4,13 @@ import com.kdabrowski8712.sportcourseplannerbackend.domain.*;
 import com.kdabrowski8712.sportcourseplannerbackend.service.InstructorDBService;
 import com.kdabrowski8712.sportcourseplannerbackend.service.ReservationDBService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class CourseMapper {
 
     @Autowired
@@ -23,7 +25,10 @@ public class CourseMapper {
 
         Course transformedCourse = new Course(courseDto.getName(),courseDto.getDescription(),courseDto.getPrice()
                                             ,courseDto.getCategory(),transformedAddress,courseDto.getStartDate(),
-                                            courseDto.getEndDate(),courseDto.getMinNrOfUsers(),courseDto.getMaxNrOfUsers());
+                                            courseDto.getEndDate(),courseDto.getMinNrOfUsers(),
+                                            courseDto.getMaxNrOfUsers());
+
+        transformedCourse.setId(courseDto.getId());
 
         courseDto.getReservationsIds().stream()
                 .forEach(resId -> {
@@ -49,9 +54,11 @@ public class CourseMapper {
 
         Address transformedAddress = new Address(course.getAddress());
 
-        CourseDto transformedCourseDto = new CourseDto(course.getName(),course.getDescription(),course.getPrice()
-                ,course.getCategory(),transformedAddress,course.getStartDate(),
+        CourseDto transformedCourseDto = new CourseDto(course.getId(),course.getName(),course.getDescription(),
+                course.getPrice(),course.getCategory(),transformedAddress,course.getStartDate(),
                 course.getEndDate(),course.getMinNrOfUsers(),course.getMaxNrOfUsers());
+
+        transformedCourseDto.setId(course.getId());
 
         course.getInstructors().stream()
                 .forEach(instructor -> {

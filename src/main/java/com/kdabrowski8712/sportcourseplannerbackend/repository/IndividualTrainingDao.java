@@ -1,12 +1,15 @@
 package com.kdabrowski8712.sportcourseplannerbackend.repository;
 
-import com.kdabrowski8712.sportcourseplannerbackend.domain.IndividualTrainingOffer;
+import com.kdabrowski8712.sportcourseplannerbackend.domain.PrivateOffer;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Transactional
 @Repository
-public interface IndividualTrainingDao extends CrudRepository<IndividualTrainingOffer,Long> {
+public interface IndividualTrainingDao extends CrudRepository<PrivateOffer,Long> {
+
+    Optional<PrivateOffer> findById(Long id);
 }

@@ -3,6 +3,7 @@ package com.kdabrowski8712.sportcourseplannerbackend.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -11,8 +12,8 @@ import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
+@Setter
 public abstract class GenericActivity {
 
     @NotNull
@@ -30,4 +31,11 @@ public abstract class GenericActivity {
     @Embedded
     protected Address address;
 
+    public GenericActivity(@NotNull String name, String description, @NotNull float price, @NotNull String category, Address address) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.address = address;
+    }
 }

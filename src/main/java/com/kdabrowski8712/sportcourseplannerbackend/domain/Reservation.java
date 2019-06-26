@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +21,12 @@ public class Reservation {
     @NotNull
     @Column(name = "reservation_id", unique = true)
     private Long id;
+
+    @Column(name = "valid")
     private boolean valid;
+
+    @Column(name="valid_until")
+    private LocalDateTime validUntil;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -32,7 +38,7 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name="individual_offer_id")
-    private IndividualTrainingOffer individualTrainingOffer;
+    private PrivateOffer privateOffer;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "schedule_entry_id")

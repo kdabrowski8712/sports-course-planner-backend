@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -15,12 +15,11 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "INDIVIDUAL_TRAINING_OFFERS")
-public class IndividualTrainingOffer extends GenericActivity {
+@Table(name = "PRIVATE_TRAINING_OFFERS")
+public class PrivateOffer extends GenericActivity {
 
-    public IndividualTrainingOffer(@NotNull String name, String description, @NotNull float price,
-                                   @NotNull String category, Address address,
-                                   LocalDateTime startHour, int duration) {
+    public PrivateOffer(@NotNull String name, String description, @NotNull float price,
+                        @NotNull String category, Address address, int duration) {
 
         super(name, description, price, category, address);
         this.duration = duration;
@@ -38,9 +37,12 @@ public class IndividualTrainingOffer extends GenericActivity {
 
     @OneToMany (
             targetEntity = Reservation.class,
-            mappedBy = "individualTrainingOffer",
+            mappedBy = "privateOffer",
             fetch = FetchType.LAZY
     )
-    private List<Reservation> reservations;
+    private List<Reservation> reservations = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "instructor_id")
+    private Instructor instructor;
 }

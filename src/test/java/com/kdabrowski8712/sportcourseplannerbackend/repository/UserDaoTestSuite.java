@@ -22,34 +22,5 @@ public class UserDaoTestSuite {
     @Autowired
     private ReservationDao reservationDao;
 
-    @Test
-    public void testUserDaoSave() {
-
-        //Given
-        Address address = new Address("12","13","14",1,2,"15");
-        User user = new User("jan","kowalski","test1",address);
-
-        Reservation reservation = new Reservation();
-        reservation.setOwner(user);
-
-        reservationDao.save(reservation);
-        //userDao.save(user);
-
-        Long user_id = user.getId();
-        Long reservstion_id = reservation.getId();
-
-        Optional<User> readUser = userDao.findById(user_id);
-        Optional<Reservation> readReservation = reservationDao.findById(reservstion_id);
-
-        Assert.assertTrue(readUser.isPresent());
-        Assert.assertTrue(readReservation.isPresent());
-
-
-
-       // userDao.deleteById(id);
-
-
-    }
-
 
 }

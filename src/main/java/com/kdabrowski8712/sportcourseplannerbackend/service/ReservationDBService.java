@@ -16,6 +16,14 @@ public class ReservationDBService {
 
     public Optional<Reservation> getReservation(Long id) {
         return reservationDao.findById(id);
+
     }
 
+    public Reservation saveReservation(final Reservation reservation) {
+        return reservationDao.save(reservation);
+    }
+
+    public void deleteReservation(long id) {
+        reservationDao.deleteById(id);
+    }
 }

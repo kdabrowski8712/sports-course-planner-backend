@@ -9,18 +9,15 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-
-@NoArgsConstructor
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "USERS")
 public class User extends GenericUser {
 
     public User(@NotNull String name, @NotNull String surname, String description, Address address) {
         super(name, surname, description, address);
-
-        reservations = new ArrayList<>();
     }
 
     @Column(name = "user_id", unique = true)
@@ -34,6 +31,6 @@ public class User extends GenericUser {
             mappedBy = "owner",
             fetch = FetchType.LAZY
     )
-    private List<Reservation> reservations;
+    private List<Reservation> reservations = new ArrayList<>();
 
 }
