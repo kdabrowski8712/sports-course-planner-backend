@@ -22,5 +22,8 @@ public class UserDaoTestSuite {
     @Autowired
     private ReservationDao reservationDao;
 
+    @Test
+    public void empty() {
 
+    }
 }

@@ -5,6 +5,7 @@ import com.kdabrowski8712.sportcourseplannerbackend.repository.CourseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,11 @@ public class CourseDBService {
 
     public void deleteCourse(Long id) {
         courseDao.deleteById(id);
+    }
+
+    public List<Course> getAllCourses() {
+
+        return courseDao.findAll();
     }
 
 }

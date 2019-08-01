@@ -42,6 +42,10 @@ public class ReservationMapperTestSuite {
         LocalDateTime start = now.plusDays(10);
         LocalDateTime end  = start.plusDays(20);
 
+        LocalDateTime resPeriodStart = LocalDateTime.of(now.toLocalDate(),now.toLocalTime());
+        LocalDateTime resPeriodEnd = resPeriodStart.plusDays(5);
+
+
         LocalDateTime valid = now.plusDays(2);
 
         Address testAdress = new Address("Poland","Wroclaw","Glowna",3,
@@ -54,7 +58,7 @@ public class ReservationMapperTestSuite {
                 33,45,null);
 
         testCourse = new Course("Zumba 1","SuperZumba",320,"Taniec",testAdress
-                , start,end,0,10);
+                , start,end,0,10,resPeriodStart,resPeriodEnd);
 
         testInstructor = new Instructor("Jan","Kowalski","super",instructorAddress);
         testUser = new User("Zbyszek","Jakis","user1",userAddress);
@@ -80,10 +84,10 @@ public class ReservationMapperTestSuite {
 
     @After
     public void cleanDB() {
-       // reservationDBService.deleteReservation(testReservation.getId());
-      //  courseDBService.deleteCourse(testCourse.getId());
-    //    userDBService.deleteUser(testUser.getId());
-    //    instructorDBService.deleteInstructor(testInstructor.getId());
+        reservationDBService.deleteReservation(testReservation.getId());
+        courseDBService.deleteCourse(testCourse.getId());
+        userDBService.deleteUser(testUser.getId());
+        instructorDBService.deleteInstructor(testInstructor.getId());
     }
 
     @Test

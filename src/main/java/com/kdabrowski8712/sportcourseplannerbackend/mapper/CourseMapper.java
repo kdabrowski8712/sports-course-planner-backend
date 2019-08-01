@@ -26,7 +26,8 @@ public class CourseMapper {
         Course transformedCourse = new Course(courseDto.getName(),courseDto.getDescription(),courseDto.getPrice()
                                             ,courseDto.getCategory(),transformedAddress,courseDto.getStartDate(),
                                             courseDto.getEndDate(),courseDto.getMinNrOfUsers(),
-                                            courseDto.getMaxNrOfUsers());
+                                            courseDto.getMaxNrOfUsers(),courseDto.getReservationPeriodStart(),
+                                            courseDto.getReservationPeriodEnd());
 
         transformedCourse.setId(courseDto.getId());
 
@@ -56,7 +57,8 @@ public class CourseMapper {
 
         CourseDto transformedCourseDto = new CourseDto(course.getId(),course.getName(),course.getDescription(),
                 course.getPrice(),course.getCategory(),transformedAddress,course.getStartDate(),
-                course.getEndDate(),course.getMinNrOfUsers(),course.getMaxNrOfUsers());
+                course.getEndDate(),course.getMinNrOfUsers(),course.getMaxNrOfUsers(),
+                course.getReservation_period_start(),course.getReservation_period_end());
 
         transformedCourseDto.setId(course.getId());
 

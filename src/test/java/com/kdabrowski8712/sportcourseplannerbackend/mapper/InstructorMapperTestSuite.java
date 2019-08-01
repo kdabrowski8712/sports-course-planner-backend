@@ -48,6 +48,11 @@ public class InstructorMapperTestSuite {
         LocalDateTime start = now.plusDays(15);
         LocalDateTime end  = start.plusDays(30);
 
+        LocalDateTime resPeriodStart = LocalDateTime.of(now.toLocalDate(),now.toLocalTime());
+        LocalDateTime resPeriodEnd = resPeriodStart.plusDays(5);
+
+
+
         Address courseAdress = new Address("Poland","Wroclaw","Bema",3,
                 121,"Plywalnia Zbik");
 
@@ -59,7 +64,7 @@ public class InstructorMapperTestSuite {
 
 
         testCourse = new Course("Kraul TI","ekstra kraul",350,"Plywanie",
-                courseAdress, start,end,0,4);
+                courseAdress, start,end,0,4,resPeriodStart,resPeriodEnd);
 
         testOffer = new PrivateOffer("indyw kraul","indyw desc",24.0F,
                 "Plywanie",individualAdress,60);
