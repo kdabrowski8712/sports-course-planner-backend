@@ -35,6 +35,7 @@ public class Course extends GenericActivity {
         this.maxNrOfUsers = maxNrOfUsers;
         this.reservation_period_start = resPeriodStart;
         this.reservation_period_end = resPeriodEnd;
+        this.status = "" + CourseStatus.NEW;
     }
 
     @Id
@@ -56,7 +57,7 @@ public class Course extends GenericActivity {
     private LocalDateTime reservation_period_start;
 
     @NotNull
-    @Column( name = "res_period_end")
+    @Column(name = "res_period_end")
     private LocalDateTime reservation_period_end;
 
 
@@ -67,7 +68,12 @@ public class Course extends GenericActivity {
     @Column(name = "max_users")
     private int maxNrOfUsers;
 
-    @OneToMany (
+    @NotNull
+    @Column(name = "course_status")
+    private String status;
+
+
+    @OneToMany(
             targetEntity = Reservation.class,
             mappedBy = "course",
             fetch = FetchType.LAZY
@@ -75,10 +81,10 @@ public class Course extends GenericActivity {
     private List<Reservation> reservations = new ArrayList<>();
 
     @ManyToMany()
-    @JoinTable (
+    @JoinTable(
             name = "JOIN_COURSE_INSTRUCTOR",
-            joinColumns = {@JoinColumn(name = "course_id",referencedColumnName = "course_id")},
-            inverseJoinColumns = {@JoinColumn(name = "instructor_id",referencedColumnName = "instructor_id")}
+            joinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "course_id")},
+            inverseJoinColumns = {@JoinColumn(name = "instructor_id", referencedColumnName = "instructor_id")}
     )
     private List<Instructor> instructors = new ArrayList<>();
 

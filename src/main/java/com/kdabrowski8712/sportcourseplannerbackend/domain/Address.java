@@ -22,7 +22,7 @@ public class Address {
     private Integer houseNr;
     private String propertyName;
 
-    public Address (Address secondOne) {
+    public Address(Address secondOne) {
         this.country = secondOne.getCountry();
         this.buildingNr = secondOne.getBuildingNr();
         this.street = secondOne.getStreet();

@@ -38,21 +38,21 @@ public class PrivateOfferMapperTestSuite {
     @Before
     public void prepareDB() {
 
-        Address userAddress = new Address("Poland","Wroclaw","Jana",
-                33,45,null);
+        Address userAddress = new Address("Poland", "Wroclaw", "Jana",
+                33, 45, null);
 
-        Address instructorAdress = new Address("Poland","Wroclaw","Zawiszy",3,
-                12,null);
+        Address instructorAdress = new Address("Poland", "Wroclaw", "Zawiszy", 3,
+                12, null);
 
-        Address privateOfferAdress = new Address("Poland","Wroclaw","Bema",3, null,"Crssfit 2");
+        Address privateOfferAdress = new Address("Poland", "Wroclaw", "Bema", 3, null, "Crssfit 2");
 
-        testInstructor = new Instructor("Jan","Maj","super",instructorAdress);
+        testInstructor = new Instructor("Jan", "Maj", "super", instructorAdress);
 
-        testUser = new User("Zbyszek","Kuc","normal user",userAddress);
+        testUser = new User("Zbyszek", "Kuc", "normal user", userAddress);
 
         testReservation = new Reservation();
 
-        testPrivateOffer = new PrivateOffer("Streching","super st",35.0F,"Zajecia silowe",privateOfferAdress,60);
+        testPrivateOffer = new PrivateOffer("Streching", "super st", 35.0F, "Zajecia silowe", privateOfferAdress, 60);
 
         testInstructor.getTrainingoffers().add(testPrivateOffer);
 
@@ -82,14 +82,13 @@ public class PrivateOfferMapperTestSuite {
     }
 
     @Test
-    public void testPrivateOfferDtoMApping()
-    {
+    public void testPrivateOfferDtoMApping() {
         //Given
         //when
         PrivateOfferDto privateOfferDto = privateOfferMapper.mapToPrivateOfferDto(testPrivateOffer);
         //Then
-        Assert.assertEquals(testInstructor.getId(),privateOfferDto.getInstructor_id());
-        Assert.assertEquals(testReservation.getId(),privateOfferDto.getReservationIds().get(0));
+        Assert.assertEquals(testInstructor.getId(), privateOfferDto.getInstructor_id());
+        Assert.assertEquals(testReservation.getId(), privateOfferDto.getReservationIds().get(0));
 
     }
 
@@ -97,7 +96,7 @@ public class PrivateOfferMapperTestSuite {
     public void testPrivateOfferMapping() {
 
         //given
-        Address privateOfferAdress = new Address("Poland","Wroclaw","Bema",3, null,"Crssfit 2");
+        Address privateOfferAdress = new Address("Poland", "Wroclaw", "Bema", 3, null, "Crssfit 2");
 
         PrivateOfferDto privateOfferDto = new PrivateOfferDto();
         privateOfferDto.setId(testPrivateOffer.getId());
@@ -115,8 +114,8 @@ public class PrivateOfferMapperTestSuite {
 
         //Then
 
-        Assert.assertEquals(testInstructor.getSurname(),privateOffer.getInstructor().getSurname());
-        Assert.assertEquals(testReservation.isValid(),privateOffer.getReservations().get(0).isValid());
+        Assert.assertEquals(testInstructor.getSurname(), privateOffer.getInstructor().getSurname());
+        Assert.assertEquals(testReservation.isValid(), privateOffer.getReservations().get(0).isValid());
 
 
     }

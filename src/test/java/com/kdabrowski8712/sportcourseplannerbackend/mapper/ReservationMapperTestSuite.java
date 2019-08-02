@@ -40,28 +40,28 @@ public class ReservationMapperTestSuite {
     public void preapreDB() {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime start = now.plusDays(10);
-        LocalDateTime end  = start.plusDays(20);
+        LocalDateTime end = start.plusDays(20);
 
-        LocalDateTime resPeriodStart = LocalDateTime.of(now.toLocalDate(),now.toLocalTime());
+        LocalDateTime resPeriodStart = LocalDateTime.of(now.toLocalDate(), now.toLocalTime());
         LocalDateTime resPeriodEnd = resPeriodStart.plusDays(5);
 
 
         LocalDateTime valid = now.plusDays(2);
 
-        Address testAdress = new Address("Poland","Wroclaw","Glowna",3,
-                12,"Szkola Tanca Skok");
+        Address testAdress = new Address("Poland", "Wroclaw", "Glowna", 3,
+                12, "Szkola Tanca Skok");
 
-        Address instructorAddress = new Address("Poland","Wroclaw","Kosciuszki",
-                1,2,null);
+        Address instructorAddress = new Address("Poland", "Wroclaw", "Kosciuszki",
+                1, 2, null);
 
-        Address userAddress = new Address("Poland","Wroclaw","Jana",
-                33,45,null);
+        Address userAddress = new Address("Poland", "Wroclaw", "Jana",
+                33, 45, null);
 
-        testCourse = new Course("Zumba 1","SuperZumba",320,"Taniec",testAdress
-                , start,end,0,10,resPeriodStart,resPeriodEnd);
+        testCourse = new Course("Zumba 1", "SuperZumba", 320, "Taniec", testAdress
+                , start, end, 0, 10, resPeriodStart, resPeriodEnd);
 
-        testInstructor = new Instructor("Jan","Kowalski","super",instructorAddress);
-        testUser = new User("Zbyszek","Jakis","user1",userAddress);
+        testInstructor = new Instructor("Jan", "Kowalski", "super", instructorAddress);
+        testUser = new User("Zbyszek", "Jakis", "user1", userAddress);
 
         testReservation = new Reservation();
 
@@ -98,8 +98,8 @@ public class ReservationMapperTestSuite {
         ReservationDto reservationDto = reservationMapper.mapToReservationDto(testReservation);
         //then
 
-        Assert.assertEquals(testReservation.getCourse().getId(),reservationDto.getCourseId());
-        Assert.assertEquals(testUser.getId(),reservationDto.getOwnerId());
+        Assert.assertEquals(testReservation.getCourse().getId(), reservationDto.getCourseId());
+        Assert.assertEquals(testUser.getId(), reservationDto.getOwnerId());
 
     }
 
@@ -118,8 +118,8 @@ public class ReservationMapperTestSuite {
         //when
         Reservation reservation = reservationMapper.mapToReservation(reservationDto);
         //then
-        Assert.assertEquals(testUser.getName(),reservation.getOwner().getName());
-        Assert.assertEquals(testCourse.getCategory(),reservation.getCourse().getCategory());
+        Assert.assertEquals(testUser.getName(), reservation.getOwner().getName());
+        Assert.assertEquals(testCourse.getCategory(), reservation.getCourse().getCategory());
 
 
     }

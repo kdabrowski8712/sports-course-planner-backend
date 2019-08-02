@@ -21,7 +21,7 @@ public class UserDBService {
         return userDao.findById(id);
     }
 
-    public void deleteUser(Long id){
+    public void deleteUser(Long id) {
         userDao.deleteById(id);
     }
 }

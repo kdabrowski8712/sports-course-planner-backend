@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Transactional
 @Repository
-public interface ScheduleDao extends CrudRepository<ScheduleEntry,Long> {
+public interface ScheduleDao extends CrudRepository<ScheduleEntry, Long> {
 
     Optional<ScheduleEntry> findById(Long id);
 }

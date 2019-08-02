@@ -21,11 +21,11 @@ public class ScheduleEntry {
     @NotNull
     @Column(name = "entry_id")
     private Long id;
-    @Column(name="start_hour")
+    @Column(name = "start_hour")
     private LocalDateTime startHour;
     @Column(name = "duration")
     private int duration;
-    @Column(name="reserved")
+    @Column(name = "reserved")
     private boolean reserved;
 
     public ScheduleEntry(LocalDateTime startHour, int duration, boolean reserved) {

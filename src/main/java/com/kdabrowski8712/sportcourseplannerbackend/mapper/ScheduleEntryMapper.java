@@ -33,7 +33,7 @@ public class ScheduleEntryMapper {
 
         scheduleEntryDto.setInstructorId(scheduleEntry.getInstructor().getId());
 
-        if(scheduleEntry.getReservation()!=null) {
+        if (scheduleEntry.getReservation() != null) {
             scheduleEntryDto.setReservationId(scheduleEntry.getReservation().getId());
         }
 
@@ -54,7 +54,7 @@ public class ScheduleEntryMapper {
         scheduleEntry.setInstructor(instructor.get());
 
 
-        if (scheduleEntryDto.getReservationId()!=null) {
+        if (scheduleEntryDto.getReservationId() != null) {
             Optional<Reservation> reservation = reservationDBService.getReservation(scheduleEntryDto.getReservationId());
             scheduleEntry.setReservation(reservation.get());
         }

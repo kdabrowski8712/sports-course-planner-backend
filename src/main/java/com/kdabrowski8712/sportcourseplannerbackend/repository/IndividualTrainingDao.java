@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Transactional
 @Repository
-public interface IndividualTrainingDao extends CrudRepository<PrivateOffer,Long> {
+public interface IndividualTrainingDao extends CrudRepository<PrivateOffer, Long> {
 
     Optional<PrivateOffer> findById(Long id);
 }

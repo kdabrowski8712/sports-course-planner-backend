@@ -26,7 +26,7 @@ public class PrivateOffer extends GenericActivity {
     }
 
     @Id
-    @Column(name = "training_id" , unique = true)
+    @Column(name = "training_id", unique = true)
     @GeneratedValue
     @NotNull
     private Long id;
@@ -35,7 +35,7 @@ public class PrivateOffer extends GenericActivity {
     private int duration;
 
 
-    @OneToMany (
+    @OneToMany(
             targetEntity = Reservation.class,
             mappedBy = "privateOffer",
             fetch = FetchType.LAZY

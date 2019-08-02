@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Transactional
 @Repository
-public interface ReservationDao extends CrudRepository<Reservation,Long> {
+public interface ReservationDao extends CrudRepository<Reservation, Long> {
 
     Optional<Reservation> findById(Long id);
 }

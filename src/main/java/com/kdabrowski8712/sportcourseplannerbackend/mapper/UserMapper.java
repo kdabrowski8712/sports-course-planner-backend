@@ -21,8 +21,8 @@ public class UserMapper {
     public UserDto mapToUserDto(User user) {
 
         Address copied = new Address(user.getAddress());
-        UserDto userDto = new UserDto(user.getName(),user.getSurname(),user.getDescription(),
-                copied,user.getId());
+        UserDto userDto = new UserDto(user.getName(), user.getSurname(), user.getDescription(),
+                copied, user.getId());
 
         user.getReservations().stream()
                 .forEach(reservation -> {
@@ -37,7 +37,7 @@ public class UserMapper {
 
         Address copied = new Address(userDto.getAddress());
 
-        User user = new User(userDto.getName(),userDto.getSurname(),userDto.getDescription(),copied);
+        User user = new User(userDto.getName(), userDto.getSurname(), userDto.getDescription(), copied);
         user.setId(userDto.getId());
 
         userDto.getReservationIds().stream()

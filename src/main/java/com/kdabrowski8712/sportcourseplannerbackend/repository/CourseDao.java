@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Transactional
 @Repository
-public interface CourseDao extends CrudRepository<Course,Long> {
+public interface CourseDao extends CrudRepository<Course, Long> {
 
     Optional<Course> findById(Long id);
 

@@ -23,18 +23,18 @@ public class CourseMapper {
 
         Address transformedAddress = new Address(courseDto.getAddress());
 
-        Course transformedCourse = new Course(courseDto.getName(),courseDto.getDescription(),courseDto.getPrice()
-                                            ,courseDto.getCategory(),transformedAddress,courseDto.getStartDate(),
-                                            courseDto.getEndDate(),courseDto.getMinNrOfUsers(),
-                                            courseDto.getMaxNrOfUsers(),courseDto.getReservationPeriodStart(),
-                                            courseDto.getReservationPeriodEnd());
+        Course transformedCourse = new Course(courseDto.getName(), courseDto.getDescription(), courseDto.getPrice()
+                , courseDto.getCategory(), transformedAddress, courseDto.getStartDate(),
+                courseDto.getEndDate(), courseDto.getMinNrOfUsers(),
+                courseDto.getMaxNrOfUsers(), courseDto.getReservationPeriodStart(),
+                courseDto.getReservationPeriodEnd());
 
         transformedCourse.setId(courseDto.getId());
 
         courseDto.getReservationsIds().stream()
                 .forEach(resId -> {
                     Optional<Reservation> reservation = reservationDBService.getReservation(resId);
-                    if(reservation.isPresent()) {
+                    if (reservation.isPresent()) {
                         transformedCourse.getReservations().add(reservation.get());
                     }
                 });
@@ -42,7 +42,7 @@ public class CourseMapper {
         courseDto.getInstructorsIds().stream()
                 .forEach(instructorId -> {
                     Optional<Instructor> instructor = instructorDBService.getInstructor(instructorId);
-                    if(instructor.isPresent()) {
+                    if (instructor.isPresent()) {
                         transformedCourse.getInstructors().add(instructor.get());
                     }
                 });
@@ -55,10 +55,10 @@ public class CourseMapper {
 
         Address transformedAddress = new Address(course.getAddress());
 
-        CourseDto transformedCourseDto = new CourseDto(course.getId(),course.getName(),course.getDescription(),
-                course.getPrice(),course.getCategory(),transformedAddress,course.getStartDate(),
-                course.getEndDate(),course.getMinNrOfUsers(),course.getMaxNrOfUsers(),
-                course.getReservation_period_start(),course.getReservation_period_end());
+        CourseDto transformedCourseDto = new CourseDto(course.getId(), course.getName(), course.getDescription(),
+                course.getPrice(), course.getCategory(), transformedAddress, course.getStartDate(),
+                course.getEndDate(), course.getMinNrOfUsers(), course.getMaxNrOfUsers(),
+                course.getReservation_period_start(), course.getReservation_period_end());
 
         transformedCourseDto.setId(course.getId());
 
@@ -72,7 +72,7 @@ public class CourseMapper {
                     transformedCourseDto.getReservationsIds().add(reservation.getId());
                 });
 
-        return  transformedCourseDto;
+        return transformedCourseDto;
 
     }
 
@@ -98,7 +98,7 @@ public class CourseMapper {
                     result.add(mapToCourse(courseDto));
                 });
 
-        return  result;
+        return result;
 
     }
 

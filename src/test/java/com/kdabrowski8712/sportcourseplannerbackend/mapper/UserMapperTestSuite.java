@@ -46,28 +46,28 @@ public class UserMapperTestSuite {
     public void preapreDB() {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime start = now.plusDays(10);
-        LocalDateTime end  = start.plusDays(20);
+        LocalDateTime end = start.plusDays(20);
 
-        LocalDateTime resPeriodStart = LocalDateTime.of(now.toLocalDate(),now.toLocalTime());
+        LocalDateTime resPeriodStart = LocalDateTime.of(now.toLocalDate(), now.toLocalTime());
         LocalDateTime resPeriodEnd = resPeriodStart.plusDays(5);
 
 
         LocalDateTime valid = now.plusDays(2);
 
-        Address testAdress = new Address("Poland","Wroclaw","Glowna",3,
-                12,"Szkola Tanca Skok");
+        Address testAdress = new Address("Poland", "Wroclaw", "Glowna", 3,
+                12, "Szkola Tanca Skok");
 
-        Address instructorAddress = new Address("Poland","Wroclaw","Kosciuszki",
-                1,2,null);
+        Address instructorAddress = new Address("Poland", "Wroclaw", "Kosciuszki",
+                1, 2, null);
 
-        Address userAddress = new Address("Poland","Wroclaw","Jana",
-                33,45,null);
+        Address userAddress = new Address("Poland", "Wroclaw", "Jana",
+                33, 45, null);
 
-        testCourse = new Course("Zumba 1","SuperZumba",320,"Taniec",testAdress
-                , start,end,0,10,resPeriodStart,resPeriodEnd);
+        testCourse = new Course("Zumba 1", "SuperZumba", 320, "Taniec", testAdress
+                , start, end, 0, 10, resPeriodStart, resPeriodEnd);
 
-        testInstructor = new Instructor("Jan","Kowalski","super",instructorAddress);
-        testUser = new User("Zbyszek","Jakis","user1",userAddress);
+        testInstructor = new Instructor("Jan", "Kowalski", "super", instructorAddress);
+        testUser = new User("Zbyszek", "Jakis", "user1", userAddress);
 
         testReservation = new Reservation();
 
@@ -89,7 +89,7 @@ public class UserMapperTestSuite {
     }
 
     @After
-    public void cleanDB(){
+    public void cleanDB() {
         reservationDBService.deleteReservation(testReservation.getId());
         courseDBService.deleteCourse(testCourse.getId());
         userDBService.deleteUser(testUser.getId());
@@ -103,7 +103,7 @@ public class UserMapperTestSuite {
         //when
         UserDto userDto = userMapper.mapToUserDto(testUser);
         //then
-        Assert.assertEquals(testReservation.getId(),userDto.getReservationIds().get(0));
+        Assert.assertEquals(testReservation.getId(), userDto.getReservationIds().get(0));
 
     }
 
@@ -120,7 +120,7 @@ public class UserMapperTestSuite {
 
         User user = userMapper.mapToUser(userDto);
         //then
-        Assert.assertEquals(testReservation.getId(),user.getReservations().get(0).getId());
+        Assert.assertEquals(testReservation.getId(), user.getReservations().get(0).getId());
 
     }
 

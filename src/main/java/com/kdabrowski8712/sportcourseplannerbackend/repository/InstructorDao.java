@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Transactional
 @Repository
-public interface InstructorDao extends CrudRepository<Instructor,Long> {
+public interface InstructorDao extends CrudRepository<Instructor, Long> {
     Optional<Instructor> findById(Long id);
 }

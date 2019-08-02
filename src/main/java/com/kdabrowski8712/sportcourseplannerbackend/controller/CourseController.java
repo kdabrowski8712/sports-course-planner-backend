@@ -32,32 +32,31 @@ public class CourseController {
     }
 
     @GetMapping(value = "/courses/{courseId}")
-    public CourseDto getCourse(@PathVariable Long courseId){
+    public CourseDto getCourse(@PathVariable Long courseId) {
 
         LocalDateTime startDate1 = LocalDateTime.now().plusDays(10);
         LocalDateTime endDate1 = startDate1.plusDays(5);
 
-        LocalDateTime resPeriodStart = LocalDateTime.of(startDate1.toLocalDate(),startDate1.toLocalTime());
+        LocalDateTime resPeriodStart = LocalDateTime.of(startDate1.toLocalDate(), startDate1.toLocalTime());
         LocalDateTime resPeriodEnd = resPeriodStart.plusDays(5);
 
 
-        Address testCourseDto2Address = new Address("Poland","Wroclaw","Street2",12,"prop1");
+        Address testCourseDto2Address = new Address("Poland", "Wroclaw", "Street2", 12, "prop1");
 
-        Course course1 = new Course("Name1","Description1",2000,"Cat1", testCourseDto2Address,startDate1,endDate1,
-                0,14,resPeriodStart,resPeriodEnd);
-
+        Course course1 = new Course("Name1", "Description1", 2000, "Cat1", testCourseDto2Address, startDate1, endDate1,
+                0, 14, resPeriodStart, resPeriodEnd);
 
 
         return courseMapper.mapToCourseDto(course1);
     }
 
     @GetMapping("/courses/instructor/{instructorId}")
-    public List<CourseDto> getCoursesByInstructor (@PathVariable Long instructorId){
+    public List<CourseDto> getCoursesByInstructor(@PathVariable Long instructorId) {
         return new ArrayList<>();
     }
 
     @GetMapping("/courses/reservation/{reservationId}")
-    public List<CourseDto> getCoursesByReservation (@PathVariable Long reservationId){
+    public List<CourseDto> getCoursesByReservation(@PathVariable Long reservationId) {
         return new ArrayList<>();
     }
 
@@ -78,7 +77,6 @@ public class CourseController {
     public CourseDto updateCourse(@RequestBody CourseDto courseDto) {
         return new CourseDto();
     }
-
 
 
 }

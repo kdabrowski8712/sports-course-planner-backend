@@ -35,7 +35,7 @@ public class CourseMapperTestSuite {
     private UserDBService userDBService;
 
     @Autowired
-    private  CourseMapper courseMapper;
+    private CourseMapper courseMapper;
 
     private User testUser;
     private Reservation testReservation;
@@ -47,27 +47,27 @@ public class CourseMapperTestSuite {
 
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime start = now.plusDays(10);
-        LocalDateTime end  = start.plusDays(20);
+        LocalDateTime end = start.plusDays(20);
 
-        LocalDateTime resPeriodStart = LocalDateTime.of(now.toLocalDate(),now.toLocalTime());
+        LocalDateTime resPeriodStart = LocalDateTime.of(now.toLocalDate(), now.toLocalTime());
         LocalDateTime resPeriodEnd = resPeriodStart.plusDays(5);
 
         LocalDateTime valid = now.plusDays(2);
 
-        Address testAdress = new Address("Poland","Wroclaw","Glowna",3,
-                12,"Szkola Tanca Skok");
+        Address testAdress = new Address("Poland", "Wroclaw", "Glowna", 3,
+                12, "Szkola Tanca Skok");
 
-        Address instructorAddress = new Address("Poland","Wroclaw","Kosciuszki",
-                1,2,null);
+        Address instructorAddress = new Address("Poland", "Wroclaw", "Kosciuszki",
+                1, 2, null);
 
-        Address userAddress = new Address("Poland","Wroclaw","Jana",
-                33,45,null);
+        Address userAddress = new Address("Poland", "Wroclaw", "Jana",
+                33, 45, null);
 
-        testCourse = new Course("Zumba 1","SuperZumba",320,"Taniec",testAdress
-                , start,end,0,10,resPeriodStart,resPeriodEnd);
+        testCourse = new Course("Zumba 1", "SuperZumba", 320, "Taniec", testAdress
+                , start, end, 0, 10, resPeriodStart, resPeriodEnd);
 
-        testInstructor = new Instructor("Jan","Kowalski","super",instructorAddress);
-        testUser = new User("Zbyszek","Jakis","user1",userAddress);
+        testInstructor = new Instructor("Jan", "Kowalski", "super", instructorAddress);
+        testUser = new User("Zbyszek", "Jakis", "user1", userAddress);
 
         testReservation = new Reservation();
 
@@ -99,8 +99,8 @@ public class CourseMapperTestSuite {
 
         //Then
 
-        Assert.assertEquals(testInstructor.getId(),mappedDto.getInstructorsIds().get(0));
-        Assert.assertEquals(testReservation.getId(),mappedDto.getReservationsIds().get(0));
+        Assert.assertEquals(testInstructor.getId(), mappedDto.getInstructorsIds().get(0));
+        Assert.assertEquals(testReservation.getId(), mappedDto.getReservationsIds().get(0));
 
         instructorDBService.saveInstructor(testInstructor);
         userDBService.saveUser(testUser);
@@ -120,7 +120,7 @@ public class CourseMapperTestSuite {
     }
 
     @Test
-    public void mapToCourse( ) {
+    public void mapToCourse() {
 
         //Given
 
@@ -143,8 +143,8 @@ public class CourseMapperTestSuite {
 
         //Then
 
-        Assert.assertEquals("Kowalski",course.getInstructors().get(0).getSurname());
-        Assert.assertEquals(testUser.getId(),course.getReservations().get(0).getOwner().getId());
+        Assert.assertEquals("Kowalski", course.getInstructors().get(0).getSurname());
+        Assert.assertEquals(testUser.getId(), course.getReservations().get(0).getOwner().getId());
 
         instructorDBService.saveInstructor(testInstructor);
         userDBService.saveUser(testUser);

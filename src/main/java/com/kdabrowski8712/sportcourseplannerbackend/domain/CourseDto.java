@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CourseDto extends  GenericActivityDto {
+public class CourseDto extends GenericActivityDto {
 
     public CourseDto(Long id, String name, String description, float price, String category,
                      Address address, LocalDateTime startDate, LocalDateTime endDate,
@@ -28,6 +28,7 @@ public class CourseDto extends  GenericActivityDto {
         this.id = id;
         this.reservationPeriodStart = resPeriodStart;
         this.reservationPeriodEnd = resPeriodEnd;
+        this.status = "" + CourseStatus.NEW;
     }
 
     private Long id;
@@ -39,6 +40,7 @@ public class CourseDto extends  GenericActivityDto {
     private int maxNrOfUsers;
     private List<Long> reservationsIds = new ArrayList<>();
     private List<Long> instructorsIds = new ArrayList<>();
+    private String status;
 
 
 }

@@ -20,7 +20,7 @@ public class InstructorDBService {
 
     public Instructor saveInstructor(final Instructor instructor) {
 
-        return  instructorDao.save(instructor);
+        return instructorDao.save(instructor);
     }
 
     public void deleteInstructor(Long id) {

@@ -26,7 +26,7 @@ public class InstructorMapper {
     public Instructor mapToInstructor(InstructorDto instructorDto) {
 
         Instructor mappedInstructor = new Instructor(instructorDto.getName(),
-                instructorDto.getSurname(),instructorDto.getDescription(),
+                instructorDto.getSurname(), instructorDto.getDescription(),
                 new Address(instructorDto.getAddress()));
 
         mappedInstructor.setId(instructorDto.getId());
@@ -34,7 +34,7 @@ public class InstructorMapper {
         instructorDto.getScheduleIds().stream()
                 .forEach(scheduleId -> {
                             Optional<ScheduleEntry> scheduleEntry = scheduleEntryDBService.getScheduleEntry(scheduleId);
-                            if(scheduleEntry.isPresent()) {
+                            if (scheduleEntry.isPresent()) {
                                 mappedInstructor.getSchedule().add(scheduleEntry.get());
                             }
                         }
@@ -43,7 +43,7 @@ public class InstructorMapper {
         instructorDto.getCoursesIds().stream()
                 .forEach(courseId -> {
                     Optional<Course> course = courseDBService.getCourse(courseId);
-                    if(course.isPresent()) {
+                    if (course.isPresent()) {
                         mappedInstructor.getCourses().add(course.get());
                     }
                 });
@@ -51,7 +51,7 @@ public class InstructorMapper {
         instructorDto.getOfferIds().stream()
                 .forEach(offerId -> {
                     Optional<PrivateOffer> offer = privateOfferDBService.getOffer(offerId);
-                    if(offer.isPresent()) {
+                    if (offer.isPresent()) {
                         mappedInstructor.getTrainingoffers().add(offer.get());
                     }
                 });
@@ -63,7 +63,7 @@ public class InstructorMapper {
     public InstructorDto mapToInstructorDto(Instructor instructor) {
 
         InstructorDto mappedInstructorDto = new InstructorDto(instructor.getName(),
-                instructor.getSurname(),instructor.getDescription(),
+                instructor.getSurname(), instructor.getDescription(),
                 new Address(instructor.getAddress()));
 
         mappedInstructorDto.setId(instructor.getId());
@@ -86,7 +86,7 @@ public class InstructorMapper {
         return mappedInstructorDto;
     }
 
-    public List<InstructorDto> mapToInstructorDtoList(List<Instructor> instructors ) {
+    public List<InstructorDto> mapToInstructorDtoList(List<Instructor> instructors) {
 
         List<InstructorDto> result = new ArrayList<>();
 
@@ -95,7 +95,7 @@ public class InstructorMapper {
                     result.add(mapToInstructorDto(instructor));
                 });
 
-        return  result;
+        return result;
 
     }
 

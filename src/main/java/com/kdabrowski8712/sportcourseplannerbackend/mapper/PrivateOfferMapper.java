@@ -35,7 +35,7 @@ public class PrivateOfferMapper {
 
         result.setInstructor_id(offer.getInstructor().getId());
 
-        if(offer.getReservations().size()!=0) {
+        if (offer.getReservations().size() != 0) {
             offer.getReservations().stream()
                     .forEach(reservation -> {
                         result.getReservationIds().add(reservation.getId());
@@ -60,11 +60,11 @@ public class PrivateOfferMapper {
 
         Optional<Instructor> potentialInstructor = instructorDBService.getInstructor(privateOfferDto.getInstructor_id());
 
-        if(potentialInstructor.isPresent()) {
+        if (potentialInstructor.isPresent()) {
             result.setInstructor(potentialInstructor.get());
         }
 
-        if(privateOfferDto.getReservationIds().size()!=0) {
+        if (privateOfferDto.getReservationIds().size() != 0) {
             privateOfferDto.getReservationIds().stream()
                     .forEach(reservationId -> {
 

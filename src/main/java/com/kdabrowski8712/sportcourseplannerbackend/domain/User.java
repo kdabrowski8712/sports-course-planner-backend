@@ -26,7 +26,7 @@ public class User extends GenericUser {
     @NotNull
     private Long id;
 
-    @OneToMany (
+    @OneToMany(
             targetEntity = Reservation.class,
             mappedBy = "owner",
             fetch = FetchType.LAZY

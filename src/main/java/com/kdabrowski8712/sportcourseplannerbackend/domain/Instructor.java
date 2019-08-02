@@ -32,7 +32,7 @@ public class Instructor extends GenericUser {
     @ManyToMany(mappedBy = "instructors")
     private List<Course> courses = new ArrayList<>();
 
-    @OneToMany (
+    @OneToMany(
             targetEntity = PrivateOffer.class,
             mappedBy = "instructor",
             fetch = FetchType.LAZY

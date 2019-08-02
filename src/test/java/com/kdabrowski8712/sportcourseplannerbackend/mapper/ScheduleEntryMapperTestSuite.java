@@ -33,19 +33,18 @@ public class ScheduleEntryMapperTestSuite {
     private ScheduleEntry testScheduleEntry;
 
 
-
     @Before
     public void preapreDB() {
 
 
-        Address instructorAdress = new Address("Poland","Wroclaw","Zawiszy",3,
-                12,null);
+        Address instructorAdress = new Address("Poland", "Wroclaw", "Zawiszy", 3,
+                12, null);
 
-        testInstructor = new Instructor("Jan","Maj","super",instructorAdress);
+        testInstructor = new Instructor("Jan", "Maj", "super", instructorAdress);
 
         LocalDateTime beg = LocalDateTime.now().plusHours(1);
 
-        testScheduleEntry = new ScheduleEntry(beg,60,false);
+        testScheduleEntry = new ScheduleEntry(beg, 60, false);
         testInstructor.getSchedule().add(testScheduleEntry);
         testScheduleEntry.setInstructor(testInstructor);
 
@@ -68,7 +67,7 @@ public class ScheduleEntryMapperTestSuite {
         //when
         ScheduleEntryDto scheduleEntryDto = scheduleEntryMapper.mapToSchedulrEntryDto(testScheduleEntry);
         //then
-        Assert.assertEquals(testInstructor.getId(),scheduleEntryDto.getInstructorId());
+        Assert.assertEquals(testInstructor.getId(), scheduleEntryDto.getInstructorId());
 
     }
 
@@ -86,7 +85,7 @@ public class ScheduleEntryMapperTestSuite {
 
         ScheduleEntry scheduleEntry = scheduleEntryMapper.maptoScheduleEntry(scheduleEntryDto);
         //then
-        Assert.assertEquals(testInstructor.getSurname(),scheduleEntry.getInstructor().getSurname());
+        Assert.assertEquals(testInstructor.getSurname(), scheduleEntry.getInstructor().getSurname());
 
     }
 }

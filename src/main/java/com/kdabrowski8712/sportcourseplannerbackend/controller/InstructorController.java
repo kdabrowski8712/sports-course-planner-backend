@@ -20,7 +20,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("/apiv1")
-public class InstructorController  {
+public class InstructorController {
 
     @Autowired
     private InstructorDBService instructorDBService;
@@ -44,7 +44,7 @@ public class InstructorController  {
         List<CourseDto> courseDtoList = new ArrayList<>();
 
         Optional<Instructor> potentialInstructor = instructorDBService.getInstructor(instructorId);
-        if(potentialInstructor.isPresent()) {
+        if (potentialInstructor.isPresent()) {
 
             potentialInstructor.get().getCourses().stream()
                     .forEach(course -> {
@@ -56,7 +56,7 @@ public class InstructorController  {
     }
 
     @PostMapping(value = "/instructors", consumes = APPLICATION_JSON_VALUE)
-    public InstructorDto addInstructor( @RequestBody  InstructorDto input) {
+    public InstructorDto addInstructor(@RequestBody InstructorDto input) {
 
         Instructor toSave = instructorMapper.mapToInstructor(input);
         instructorDBService.saveInstructor(toSave);
@@ -79,7 +79,6 @@ public class InstructorController  {
 
         instructorDBService.deleteInstructor(instructorId);
     }
-
 
 
 }

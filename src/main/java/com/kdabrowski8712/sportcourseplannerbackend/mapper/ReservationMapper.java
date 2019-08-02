@@ -31,16 +31,16 @@ public class ReservationMapper {
 
         reservationDto.setId(reservation.getId());
 
-        if(reservation.getCourse()!=null) {
+        if (reservation.getCourse() != null) {
             reservationDto.setCourseId(reservation.getCourse().getId());
         }
-        if(reservation.getPrivateOffer() !=null) {
+        if (reservation.getPrivateOffer() != null) {
             reservationDto.setPrivateOfferId(reservation.getPrivateOffer().getId());
         }
 
         reservationDto.setOwnerId(reservation.getOwner().getId());
 
-        if(reservation.getScheduleEntry()!=null) {
+        if (reservation.getScheduleEntry() != null) {
             reservationDto.setScheduleEntryId(reservation.getScheduleEntry().getId());
         }
 
@@ -56,12 +56,12 @@ public class ReservationMapper {
 
         reservation.setId(reservationDto.getId());
 
-        if(reservationDto.getCourseId() !=null) {
+        if (reservationDto.getCourseId() != null) {
             Optional<Course> course = courseDBService.getCourse(reservationDto.getCourseId());
             reservation.setCourse(course.get());
         }
 
-        if(reservationDto.getPrivateOfferId() !=null) {
+        if (reservationDto.getPrivateOfferId() != null) {
             Optional<PrivateOffer> privateOffer = privateOfferDBService.getOffer(reservationDto.getPrivateOfferId());
             reservation.setPrivateOffer(privateOffer.get());
         }
@@ -69,7 +69,7 @@ public class ReservationMapper {
         Optional<User> user = userDBService.getUser(reservationDto.getOwnerId());
         reservation.setOwner(user.get());
 
-        if(reservationDto.getScheduleEntryId() !=null) {
+        if (reservationDto.getScheduleEntryId() != null) {
             Optional<ScheduleEntry> scheduleEntry = scheduleEntryDBService.getScheduleEntry(reservationDto.getScheduleEntryId());
             reservation.setScheduleEntry(scheduleEntry.get());
         }

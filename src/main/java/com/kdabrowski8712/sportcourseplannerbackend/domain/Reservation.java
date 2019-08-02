@@ -25,7 +25,7 @@ public class Reservation {
     @Column(name = "valid")
     private boolean valid;
 
-    @Column(name="valid_until")
+    @Column(name = "valid_until")
     private LocalDateTime validUntil;
 
     @ManyToOne
@@ -37,7 +37,7 @@ public class Reservation {
     private Course course;
 
     @ManyToOne
-    @JoinColumn(name="individual_offer_id")
+    @JoinColumn(name = "individual_offer_id")
     private PrivateOffer privateOffer;
 
     @OneToOne(fetch = FetchType.LAZY)

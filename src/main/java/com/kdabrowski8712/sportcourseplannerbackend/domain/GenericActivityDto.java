@@ -15,7 +15,7 @@ public abstract class GenericActivityDto {
     protected String category;
     protected Address address;
 
-    public GenericActivityDto( String name, String description,  float price, String category, Address address) {
+    public GenericActivityDto(String name, String description, float price, String category, Address address) {
         this.name = name;
         this.description = description;
         this.price = price;

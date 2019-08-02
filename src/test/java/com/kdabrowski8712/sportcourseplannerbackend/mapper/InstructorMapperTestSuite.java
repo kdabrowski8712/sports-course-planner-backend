@@ -46,35 +46,34 @@ public class InstructorMapperTestSuite {
 
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime start = now.plusDays(15);
-        LocalDateTime end  = start.plusDays(30);
+        LocalDateTime end = start.plusDays(30);
 
-        LocalDateTime resPeriodStart = LocalDateTime.of(now.toLocalDate(),now.toLocalTime());
+        LocalDateTime resPeriodStart = LocalDateTime.of(now.toLocalDate(), now.toLocalTime());
         LocalDateTime resPeriodEnd = resPeriodStart.plusDays(5);
 
 
+        Address courseAdress = new Address("Poland", "Wroclaw", "Bema", 3,
+                121, "Plywalnia Zbik");
 
-        Address courseAdress = new Address("Poland","Wroclaw","Bema",3,
-                121,"Plywalnia Zbik");
+        Address individualAdress = new Address("Poland", "Wroclaw", "Chelmonskiego", 3,
+                null, "Basen SP34");
 
-        Address individualAdress = new Address("Poland","Wroclaw","Chelmonskiego",3,
-                null,"Basen SP34");
-
-        Address instructorAdress = new Address("Poland","Wroclaw","Zawiszy",3,
-                12,null);
-
-
-        testCourse = new Course("Kraul TI","ekstra kraul",350,"Plywanie",
-                courseAdress, start,end,0,4,resPeriodStart,resPeriodEnd);
-
-        testOffer = new PrivateOffer("indyw kraul","indyw desc",24.0F,
-                "Plywanie",individualAdress,60);
+        Address instructorAdress = new Address("Poland", "Wroclaw", "Zawiszy", 3,
+                12, null);
 
 
-        testInstructor = new Instructor("Jan","Maj","super",instructorAdress);
+        testCourse = new Course("Kraul TI", "ekstra kraul", 350, "Plywanie",
+                courseAdress, start, end, 0, 4, resPeriodStart, resPeriodEnd);
+
+        testOffer = new PrivateOffer("indyw kraul", "indyw desc", 24.0F,
+                "Plywanie", individualAdress, 60);
+
+
+        testInstructor = new Instructor("Jan", "Maj", "super", instructorAdress);
 
         LocalDateTime beg = LocalDateTime.now().plusHours(1);
 
-        testEntry = new ScheduleEntry(beg,60,false);
+        testEntry = new ScheduleEntry(beg, 60, false);
 
         testOffer.setInstructor(testInstructor);
         testInstructor.getTrainingoffers().add(testOffer);
@@ -105,7 +104,7 @@ public class InstructorMapperTestSuite {
     }
 
     @Test
-    public void testMapToDto(){
+    public void testMapToDto() {
         //Given
         //When
 
@@ -113,9 +112,9 @@ public class InstructorMapperTestSuite {
 
         //Then
 
-        Assert.assertEquals(testCourse.getId(),mappedInstructor.getCoursesIds().get(0));
-        Assert.assertEquals(testOffer.getId(),mappedInstructor.getOfferIds().get(0));
-        Assert.assertEquals(testEntry.getId(),mappedInstructor.getScheduleIds().get(0));
+        Assert.assertEquals(testCourse.getId(), mappedInstructor.getCoursesIds().get(0));
+        Assert.assertEquals(testOffer.getId(), mappedInstructor.getOfferIds().get(0));
+        Assert.assertEquals(testEntry.getId(), mappedInstructor.getScheduleIds().get(0));
     }
 
     @Test
@@ -142,9 +141,9 @@ public class InstructorMapperTestSuite {
 
         //Then
 
-        Assert.assertEquals("indyw kraul",instructor.getTrainingoffers().get(0).getName());
-        Assert.assertEquals("Kraul TI",instructor.getCourses().get(0).getName());
-        Assert.assertEquals(60,instructor.getSchedule().get(0).getDuration());
+        Assert.assertEquals("indyw kraul", instructor.getTrainingoffers().get(0).getName());
+        Assert.assertEquals("Kraul TI", instructor.getCourses().get(0).getName());
+        Assert.assertEquals(60, instructor.getSchedule().get(0).getDuration());
 
 
     }
